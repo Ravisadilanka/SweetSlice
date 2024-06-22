@@ -1,4 +1,4 @@
-const mongoose = require ('mongoose')
+const mongoose = require('mongoose')
 const config = require('config')
 const jwt = require('jsonwebtoken')
 const Joi = require('joi')
@@ -31,8 +31,8 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-userSchema.methods.generateAuthToken = function() {
-    const token = jwt.sign({_id: this._id}, config.get('jwtPrivateKey'))
+userSchema.methods.generateAuthToken = function () {
+    const token = jwt.sign({ _id: this._id }, config.get('jwtPrivateKey'))
     return token
 }
 

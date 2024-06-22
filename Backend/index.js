@@ -18,7 +18,7 @@ if (app.get('env') === 'development') {
     mongoose.connect('mongodb://localhost:27017/SweetSlice')
         .then(() => console.log('MongoDB Compass Connected'))
         .catch((err) => console.log('MongoDB Compass connection error:', err))
-}else{
+} else {
     mongoose.connect(process.env.MONGODB_URI)
         .then(() => console.log('MongoDB Atlas Connected'))
         .catch((err) => console.log('MongoDB Atlas connection error:', err))
