@@ -5,6 +5,7 @@ const signup = require('./routes/Signup')
 const login = require('./routes/Login')
 const currentUser = require('./routes/CurrentUser')
 const product = require('./routes/Product')
+const cart = require('./routes/Cart')
 
 const app = express()
 app.use(cors())
@@ -14,6 +15,7 @@ app.use('/api/signup', signup)
 app.use('/api/login', login)
 app.use('/api/users', currentUser)
 app.use('/api/dashboard/products', product)
+app.use('/api/cart', cart)
 
 // Connect to MongoDB
 if (app.get('env') === 'development') {

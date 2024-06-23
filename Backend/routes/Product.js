@@ -37,9 +37,9 @@ router.get('/', async (req, res) => {
 })
 
 //update products
-router.put('/:id', upload.single('image'),async (req, res) => {
+router.put('/:id', upload.single('image'), async (req, res) => {
     try {
-        const {error} = validateProductUpdate(req.body)
+        const { error } = validateProductUpdate(req.body)
         if (error) return res.status(400).send(error.details[0].message)
 
         const product = await Product.findByIdAndUpdate(req.params.id, {
@@ -49,7 +49,7 @@ router.put('/:id', upload.single('image'),async (req, res) => {
             image: req.file.path
         }, { new: true })
         if (!product) return res.status(404).send('Product not found')
-        
+
         res.send(product)
     } catch (error) {
         console.error(error.message);
@@ -58,12 +58,12 @@ router.put('/:id', upload.single('image'),async (req, res) => {
 })
 
 //Delete products
-router.delete('/:id', async(req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const product = await Product.findByIdAndDelete(req.params.id)
         if (!product) return res.status(404).send('Product not found')
 
-        res.send({message: `${product.name} deleted successfully`})
+        res.send({ message: `${product.name} deleted successfully` })
     } catch (error) {
         console.error(error.message);
         res.status(500).send('Server Error');
