@@ -38,6 +38,16 @@ const userSchema = new mongoose.Schema({
             type: Number,
             required: true
         }
+    }],
+    purchasedItems: [{
+        productId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Products'
+        },
+        quantity: {
+            type: Number,
+            required: true
+        }
     }]
 })
 
