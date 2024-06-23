@@ -39,4 +39,16 @@ router.post('/', auth, async (req, res) => {
     }
 });
 
+//View purchased items
+router.get('/', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id).populate(`purchasedItems.productId`)
+        if (!user) return res.status(400).send('Invalid user.')
+
+        res.send(user.purchasedItems)
+    } catch(error) {
+        res.status(500).send('Something went wrong.')
+    }
+})
+
 module.exports = router;
