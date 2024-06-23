@@ -20,6 +20,8 @@ router.put('/:id', async (req, res) => {
             lastName: req.body.lastName
         }, { new: true}).select('-password')
 
+        if (!user) return res.status(404).send('User not found')
+
         await user.save()
         res.send(user)
     } catch (error) {
@@ -27,5 +29,16 @@ router.put('/:id', async (req, res) => {
     }
 })
 
+//Delete users
+router.delete('/:id', async(req, res) => {
+    try {
+        const user = await User.findByIdAndDelete(req.params.id)
+        if (!user) return res.status(404).send('User not found')
+
+        res.send(user)
+    } catch (error) {
+        res.status(500).send('Server Error')
+    }
+})
 
 module.exports = router
