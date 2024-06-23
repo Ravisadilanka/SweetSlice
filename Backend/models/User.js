@@ -28,7 +28,17 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: 5,
         maxlength: 1024
-    }
+    },
+    cart: [{
+        productId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Products'
+        },
+        quantity: {
+            type: Number,
+            required: true
+        }
+    }]
 })
 
 userSchema.methods.generateAuthToken = function () {
